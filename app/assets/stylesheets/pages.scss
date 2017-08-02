@@ -1,3 +1,42 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#logo {
+  float: left;
+  size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: green;
+  text-decoration: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: asset-url('bg-home.jpg');
+  background-size: cover;
+  height: 300px;
+}
+
+.jumbotron h1, h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.btn-purple {
+  color: #fff;
+  background-color: #390046;
+}
+
+.btn-purple:hover {
+  color: #fff;
+  text-decoration: none;
+}

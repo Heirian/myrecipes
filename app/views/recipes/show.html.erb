@@ -1,21 +1,27 @@
 <%= render 'shared/page_title', title: @recipe.name %>
 
-<div class="well col-md-8 col-md-offset-2">
-  <h4 class="description">
-    <strong>
-      Steps:
-    </strong>
-  </h4>
-  <hr />
-  <%= simple_format(@recipe.description) %>
-  <hr />
-  <div class="pull-right">
-    <small>
-      <%= link_to gravatar_for(@recipe.chef), recipes_path %>
-      <div class="separator">
-        Created by: <%= @recipe.chef.chefname.capitalize %>
-      </div>
-      Created <%= time_ago_in_words(@recipe.created_at) %> ago
-    </small>
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <h4 class="description">
+      <strong>
+        Steps:
+      </strong>
+    </h4>
+    <hr />
+    <%= simple_format(@recipe.description) %>
+    <hr />
+    <div class="pull-right">
+      <small>
+        <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+        <div class="separator">
+          Created by: <%= @recipe.chef.chefname.capitalize %>
+        </div>
+        Created <%= time_ago_in_words(@recipe.created_at) %> ago
+      </small>
+    </div>
   </div>
+</div>
+
+<div class="center">
+  <%= link_to "Back", recipes_path %>
 </div>

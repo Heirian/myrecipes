@@ -11,7 +11,16 @@
     }
   }
 }
+
 .separator {
   margin-top: 0.1cm;
   margin-bottom: 0.1cm;
+}
+
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0.05px 0.05px 0.05px #390046;
+  }
 }

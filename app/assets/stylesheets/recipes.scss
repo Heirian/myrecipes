@@ -4,10 +4,14 @@
 
 .well {
   a {
-    color: black;
+    color: #390046;
     &:hover {
       text-decoration: none;
-      text-shadow: 0.5px 0.5px 0.5px gray;
+      text-shadow: 0.2px 0.2px 0.2px gray;
     }
   }
+}
+.separator {
+  margin-top: 0.1cm;
+  margin-bottom: 0.1cm;
 }

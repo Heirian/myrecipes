@@ -25,6 +25,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
     assert_match @recipe.name, response.body
     assert_match @recipe.description, response.body
     assert_match @user.chefname, response.body
+    assert_select 'a[href=?]', edit_recipe_path(@recipe), text:"Edit this recipe"
+    assert_select 'a[href=?]', recipe_path(@recipe), text: "Delete this recipe"
   end
 
   test "create new valide recipe" do
@@ -71,5 +73,16 @@ class RecipesTest < ActionDispatch::IntegrationTest
     @recipe.reload
     assert_match updated_name, @recipe.name
     assert_match updated_description, @recipe.description
+  end
+
+  test "successfully delete a recipe" do
+    get recipe_path(@recipe)
+    assert_template 'recipes/show'
+    assert_select 'a[href=?]', recipe_path(@recipe), text: 'Delete this recipe'
+    assert_difference 'Recipe.count', -1 do
+      delete recipe_path(@recipe)
+    end
+    assert_redirected_to recipes_path
+    assert_not flash.empty?
   end
 end

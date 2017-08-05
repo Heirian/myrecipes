@@ -7,6 +7,9 @@ class Chef < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
   has_many :recipes
+  has_secure_password
+  validates :password, presence: true, length: { minimum: 5 }
+
   private
 
     # Converts email to all lower-case.

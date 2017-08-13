@@ -1,0 +1,74 @@
+<%= render 'shared/page_title', title: 'Edit your account' %>
+
+<% if @chef.errors.any? %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          <%= pluralize(@chef.errors.count, "error") %>
+          prohibited this <%= @chef.class %> from being saved:
+        </h2>
+        <div class="panel-body">
+          <ul>
+            <% @chef.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@chef, :html => { class: "form-horizontal", role: "form" }) do |f| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :chefname, "Choose a chefname" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :chefname, class: "form-control", placeholder: "Enter your name", autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :email %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :email, class: "form-control", placeholder: "Enter your email" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :password %>
+        </div>
+        <div class="col-md-8">
+          <%= f.password_field :password, class: "form-control", placeholder: "Choose a password" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :password_confirmation, "Confirm password" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <%= f.submit "Create account", class: "btn btn-purple btn-lg" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to "Return to home", pages_home_path, class: "btn btn-purple" %>
+  </div>
+</div>

@@ -1,4 +1,8 @@
 class ChefsController < ApplicationController
+  def index
+    @chefs = Chef.all
+  end
+  
   def show
     @chef = Chef.find(params[:id])
   end
@@ -30,7 +34,7 @@ class ChefsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   private
 
   def chef_params

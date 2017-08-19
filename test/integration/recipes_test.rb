@@ -48,6 +48,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "reject invalid submissions" do
+    sign_in_as(@user, "password")
     get new_recipe_path
     assert_template 'recipes/new'
     assert_no_difference 'Recipe.count' do
@@ -59,6 +60,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "reject invalid update" do
+    sign_in_as(@user, "password")
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
     patch recipe_path(@recipe), params: { recipe: { name: " ", description: "some description " } }
@@ -68,6 +70,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "success update recipe" do
+    sign_in_as(@user, "password")
     get edit_recipe_path(@recipe)
     assert_template 'recipes/edit'
     updated_name = "updated name"

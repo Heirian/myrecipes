@@ -17,6 +17,12 @@
           <small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small>
         </span>
       </p>
+      <% if logged_in? && current_chef == recipe.chef %>
+        <%= link_to "Edit this recipe", edit_recipe_path(recipe), class: "btn btn-purple" %>
+        <%= link_to "Delete this recipe", recipe_path(recipe), method: :delete,
+                                                                data: { confirm: "Are you sure?" },
+                                                                class: "btn btn-purple" %>
+      <% end %>
     </div>
   </div>
 <% end %>

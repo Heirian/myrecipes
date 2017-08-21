@@ -57,7 +57,7 @@ class ChefsController < ApplicationController
   end
 
   def require_same_user
-    if current_chef != @chef
+    if current_chef != @chef && !current_chef.admin?
       flash[:danger] = "You can't change another chefs things"
       redirect_to chefs_path
     end

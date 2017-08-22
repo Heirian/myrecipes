@@ -38,3 +38,20 @@
     <% end %>
   </div>
 </div>
+
+<hr />
+
+<% if @recipe.comments.any? %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>
+        Prior comments:
+      </h3>
+      <div id="messages">
+        <%= render partial: 'comments/comments', object: @comments %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <h3 class="center">No comments yet</h3>
+<% end %>

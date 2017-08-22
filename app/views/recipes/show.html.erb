@@ -44,13 +44,13 @@
 <% if logged_in? %>
   <div class="row">
     <div class="col-md-12">
-      <%= form_for([@recipe, @comment], :html => { class: "form-horizontal", role: "form" }) do |f| %>
+      <%= form_for([@recipe, @comment], remote: true, :html => { class: "form-horizontal", role: "form" }) do |f| %>
         <div class="form-group">
           <div class="col-md-8 col-md-offset-1">
-            <%= f.text_field :description, class: "form-control", placeholder: "Enter your comment", autofocus: true %>
+            <%= f.text_field :description, class: "form-control", placeholder: "Write a comment", autofocus: true %>
           </div>
           <div class="col-md-2">
-            <%= f.submit "Add comment", class: "btn btn-purple" %>
+            <%= f.submit "Post", class: "btn btn-purple" %>
           </div>
         </div>
       <% end %>

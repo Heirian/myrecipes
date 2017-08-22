@@ -41,6 +41,27 @@
 
 <hr />
 
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for([@recipe, @comment], :html => { class: "form-horizontal", role: "form" }) do |f| %>
+        <div class="form-group">
+          <div class="col-md-8 col-md-offset-1">
+            <%= f.text_field :description, class: "form-control", placeholder: "Enter your comment", autofocus: true %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit "Add comment", class: "btn btn-purple" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <h3 class="center"><%= link_to "Log in to comment", login_path %></h3>
+<% end %>
+
+<hr />
+
 <% if @recipe.comments.any? %>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">

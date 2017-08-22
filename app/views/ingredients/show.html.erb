@@ -1,15 +1,12 @@
-<%= render 'shared/page_title', title: 'Listing all recipes' %>
+<%= render 'shared/page_title', title: "#{@ingredient.name}" %>
+
 <div align="center">
-  <%= will_paginate %>
+  <%= will_paginate @ingredient_recipes %>
 </div>
-<% @recipes.each do |recipe| %>
+
+<% @ingredient_recipes.each do |recipe| %>
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0 col-md-2 col-md-offset-0">
-      <section class="center">
-        <%= gravatar_for(recipe.chef, size: 137) %>
-      </section>
-    </div>
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-8 col-md-offset-0 well">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 well">
       <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
       <p><%= truncate(recipe.description, length: 150) %></p>
       <% if recipe.ingredients.any? %>
@@ -17,10 +14,10 @@
       <% end %>
       <p>
         <span class="quiet">
-          <small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.chefname.capitalize %></small>
+          <small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small>
         </span>
       </p>
-      <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>
+      <% if logged_in? && current_chef == recipe.chef || current_chef.admin? %>
         <%= link_to "Edit this recipe", edit_recipe_path(recipe), class: "btn btn-purple" %>
         <%= link_to "Delete this recipe", recipe_path(recipe), method: :delete,
                                                                 data: { confirm: "Are you sure?" },
@@ -29,6 +26,7 @@
     </div>
   </div>
 <% end %>
+
 <div align="center">
-  <%= will_paginate %>
+  <%= will_paginate @ingredient_recipes %>
 </div>

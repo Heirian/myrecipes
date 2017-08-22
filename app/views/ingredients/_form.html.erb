@@ -1,0 +1,43 @@
+<% if object.errors.any? %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          <%= pluralize(object.errors.count, "error") %>
+          prohibited this <%= object.class %> from being saved:
+        </h2>
+        <div class="panel-body">
+          <ul>
+            <% object.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(object, :html => { class: "form-horizontal", role: "form" }) do |f| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :name %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :name, class: "form-control", placeholder: "Enter the ingredient", autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <%= f.submit(object.new_record? ? "Add Ingredient": "Edit Ingredient", class: "btn btn-purple") %>
+          <%= link_to "Return to ingredient listing", ingredients_path, class: "btn btn-purple" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

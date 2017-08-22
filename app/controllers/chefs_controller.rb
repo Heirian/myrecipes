@@ -1,5 +1,6 @@
 class ChefsController < ApplicationController
   before_action :set_chef, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:destroy]
 
@@ -64,7 +65,7 @@ class ChefsController < ApplicationController
   end
 
   def require_admin
-    if logged_in? && !current_chef.admin?
+    if !current_chef.admin?
       flash[:danger] = "Only admin users can perfom that action"
       redirect_to root_path
     end

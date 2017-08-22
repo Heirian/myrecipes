@@ -43,6 +43,15 @@
         </div>
       </div>
       <div class="form-group">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-10">
+            <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb| %>
+              <% cb.label(class: "checkbox-inline input-checkbox") { cb.check_box(class: "checkbox") + cb.text } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
           <%= f.submit class: "btn btn-purple" %>
           <%= link_to "Create a new recipe", new_recipe_path, class: "btn btn-purple" %>

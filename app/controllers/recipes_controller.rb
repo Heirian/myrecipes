@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit,:update, :destroy]
-  before_action :require_user, except: [:index, :show]
+  before_action :set_recipe, only: [:show, :edit,:update, :destroy, :like]
+  before_action :require_user, except: [:index, :show, :like]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
@@ -43,6 +43,17 @@ class RecipesController < ApplicationController
     @recipe.destroy
     flash[:success] = "Recipe was deleted successfully!"
     redirect_to recipes_path
+  end
+
+  def like
+    like = Like.create(like: params[:like], chef: current_chef, recipe: @recipe)
+    if like.valid?
+      flash[:success] = "Your selection was succesful"
+      redirect_to @recipe
+    else
+      flash[:danger] = "You can only like/dislike a recipe once"
+      redirect_to @recipe
+    end
   end
 
   private

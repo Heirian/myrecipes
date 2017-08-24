@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0 col-md-2 col-md-offset-0">
       <section class="center">
-        <%= gravatar_for(recipe.chef, size: 137) %>
+        <%= link_to gravatar_for(recipe.chef, size: 137), chef_path(recipe.chef) %>
       </section>
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-0 col-md-8 col-md-offset-0 well">
@@ -23,6 +23,16 @@
           </small>
         </span>
       </p>
+      <div class="row">
+        <div class="pull-right liking">
+          <%= link_to like_recipe_path(recipe, like: true), method: :post do %>
+            <i class="glyphicon glyphicon-thumbs-up"></i>
+          <% end %> <%= recipe.thumbs_up_total %> ||
+          <%= link_to like_recipe_path(recipe, like: false), method: :post do %>
+            <i class="glyphicon glyphicon-thumbs-down"></i>
+          <% end %> <%= recipe.thumbs_down_total %>
+        </div>
+      </div>
       <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>
         <%= link_to "Edit this recipe", edit_recipe_path(recipe), class: "btn btn-purple" %>
         <%= link_to "Delete this recipe", recipe_path(recipe), method: :delete,

@@ -3,10 +3,18 @@
 <div class="row chat-container">
   <div class="col-md-8 center-block">
     <div class="messages" id="messages">
-
+      <%= render @messages %>
     </div>
-  </div>
-  <div class="message-container">
-    
+    <hr />
+    <div class="row">
+      <div class="col-md-1">
+        <%= gravatar_for(current_chef, size: 50) %>
+      </div>
+      <div class="message-container">
+        <%= form_for(@message, remote: true, :html => {class: "form-horizontal", role: "form"} ) do |f| %>
+          <%= f.text_field :content, class: "form-control", placeholder: "Say something!" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

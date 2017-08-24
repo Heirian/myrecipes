@@ -29,3 +29,35 @@ body {
 .input-checkbox input {
   width: auto !important;
 }
+
+.center-block {
+  float: none;
+}
+
+.chat-container {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 150px;
+  width: 90;
+}
+
+.message-container {
+  .form-control {
+    float: right;
+    width: 90%;
+  }
+}
+
+.message {
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.messages {
+  border: 1px solid #eaeaea;
+  height: 16em;
+  position: relative;
+  overflow: auto;
+  width: 102%;
+}
